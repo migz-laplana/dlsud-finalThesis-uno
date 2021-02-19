@@ -66,15 +66,15 @@ void loop()
   {
     if (mfrc522[0].PICC_IsNewCardPresent() && mfrc522[0].PICC_ReadCardSerial())
     {
-      digitalWrite(5, HIGH);
-      delay(1000);
-      digitalWrite(5, LOW);
-    }
-    else if (mfrc522[1].PICC_IsNewCardPresent() && mfrc522[1].PICC_ReadCardSerial())
-    {
       digitalWrite(6, HIGH);
       delay(1000);
       digitalWrite(6, LOW);
+    }
+    else if (mfrc522[1].PICC_IsNewCardPresent() && mfrc522[1].PICC_ReadCardSerial())
+    {
+      digitalWrite(5, HIGH);
+      delay(1000);
+      digitalWrite(5, LOW);
     }
     else
     {
@@ -225,16 +225,43 @@ void loop()
     delay(3000);
     return;
   }
+//bool ledReader2 = true;
+//  for (int x = 0; x < 5; x++)
+//  {
+//if (person[x]!= content.substring(1) && readerActive == 2) //check for free slots
+//    {
+//    ledReader2 = false;
+//      break;
+// }
+//  
+//    }
+//    
+//    
+//
+//for (int x = 0; x < 5; x++) 
+//  {
+//    if (person[x] == content.substring(1) && readerActive == 2 && !ledReader2)
+//    {
+//    
+//      break;
+//    }
+//  }
 
   bool wrongReader = true;
   for (int x = 0; x < 5; x++)
   {
     if (person[x] == content.substring(1) && readerActive == 2) //check for free slots
     {
+    
       wrongReader = false;
       break;
     }
   }
+
+if (readerActive == 2 && wrongReader) {
+
+    pailaw();
+}
 
   for (int x = 0; x < 5; x++) //CHECK NATIN IF NAKASAKAY NA SIYA
   {
@@ -296,12 +323,34 @@ void loop()
       delay(3000);
       return;
     }
+
   }
 
   if (occupiedSlots == 5) //SET MAX SEATS
   {
     Serial.println("JEEP IS FULL. LUMAYAS KA.");
     delay(3000);
+      digitalWrite(6, HIGH);
+      delay(400);
+      digitalWrite(6, LOW);
+      delay(400);
+      digitalWrite(6, HIGH);
+      delay(400);
+      digitalWrite(6, LOW);
+      delay(400);
+      digitalWrite(6, HIGH);
+      delay(400);
+      digitalWrite(6, LOW);
+      delay(400);
+      digitalWrite(6, HIGH);
+      delay(400);
+      digitalWrite(6, LOW);
+      delay(400);
+      digitalWrite(6, HIGH);
+      delay(400);
+      digitalWrite(6, LOW);
+      
+
     return;
   }
 
@@ -311,6 +360,21 @@ void loop()
   {
     if (person[x] == content.substring(1) && readerActive == 1)
     {
+      if(wrongReader2=true) {
+      digitalWrite(6, HIGH);
+      delay(400);
+      digitalWrite(6, LOW);
+      delay(400);
+      digitalWrite(6, HIGH);
+      delay(400);
+      digitalWrite(6, LOW);
+      delay(400);
+      digitalWrite(6, HIGH);
+      delay(400);
+      digitalWrite(6, LOW);
+      delay(400);
+      
+    }
       wrongReader2 = true;
     }
   }
@@ -378,6 +442,7 @@ void loop()
   content = "";
   wrongReader = false;
   wrongReader2 = false;
+
 }
 
 bool displayInfo()
@@ -396,4 +461,19 @@ bool displayInfo()
   {
     return false;
   }
+}
+
+void pailaw(){
+      digitalWrite(5, HIGH);
+      delay(400);
+      digitalWrite(5, LOW);
+      delay(400);
+      digitalWrite(5, HIGH);
+      delay(400);
+      digitalWrite(5, LOW);
+      delay(400);
+      digitalWrite(5, HIGH);
+      delay(400);
+      digitalWrite(5, LOW);
+      delay(400);
 }
